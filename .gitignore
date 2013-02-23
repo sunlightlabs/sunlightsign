@@ -1,0 +1,4 @@
+calendar.dat
+client_secrets.json
+local_settings.py
+*.pyc

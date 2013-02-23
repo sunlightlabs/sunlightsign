@@ -29,7 +29,7 @@ def get_service_credentials():
 	# If the Credentials don't exist or are invalid, run through the native client
 	# flow. The Storage object will ensure that if successful the good
 	# Credentials will get written back to a file.
-	storage = Storage('calendar.dat')
+	storage = Storage(OAUTH_TOKEN_FILE)
 	credentials = storage.get()
 	if credentials is None or credentials.invalid == True:
 		credentials = run(FLOW, storage)

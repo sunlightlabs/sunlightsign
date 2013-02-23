@@ -1,4 +1,5 @@
 calendar.dat
 client_secrets.json
 local_settings.py
+sunlightsign.pid
 *.pyc

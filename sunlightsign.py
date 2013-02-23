@@ -43,7 +43,13 @@ class SunlightSign():
 
         # open USB connection to sign
         self.sign = alphasign.USB(alphasign.devices.USB_BETABRITE_PRISM)
-        self.sign.connect()
+        try:
+            self.sign.connect()
+        except ValueError, e:
+            sys.stderr.write("Error accessing sign. Are you sure it's connected?\n")            
+            raise e
+
+
         self.sign.clear_memory()       
         # self.sign.beep()
 

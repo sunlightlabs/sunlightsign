@@ -96,15 +96,17 @@ class SunlightSign():
         return processed_events
 
     def generate_message(self):
+        now = datetime.datetime.now(tz=pytz.timezone(TIMEZONE))      
+
+        self.log("Regenerating message at %s" % str(now))
+
+        self.log("Fetching events")
         gcal_events = gcal.get_events()
         events = self._process_gcal_events(gcal_events)
+        self.log("Done fetching events")
         
-        now = datetime.datetime.now(tz=pytz.timezone(TIMEZONE))      
-        self.log("I think it is currently %s" % str(now))
         for (i, event) in enumerate(events):
             (summary, start, end) = event
-            
-            # self.log("Examining event '%s' which starts at %s and ends at %s" % (summary, str(start), str(end)))
             
             if now>start and now<end:
                 t = "%s%s" % (self.SUNLIGHT_ORANGE, self._make_event_display_string(event))
@@ -138,9 +140,7 @@ class SunlightSign():
                 else:
                     color = alphasign.colors.RED        
 
-                return "%s%s in %s" % (color, summary, " ".join(result))
-
-        self.log("Finished parsing iCal file.")
+                return "%s%s in %s" % (color, summary, " ".join(result))        
 
         return "%sError: could not retrieve calendar data" % alphasign.colors.RED
 
@@ -151,7 +151,7 @@ class SunlightSign():
         # only update the sign if there's been a change in its content (minimizes pauses)
         if t!=self.sign_text:
         
-            self.log("Setting sign text to '%s'" % t)
+            self.log("Setting sign message to '%s'" % t)
 
             # create logical objects to work with
             content = alphasign.String(size=25, label="A")

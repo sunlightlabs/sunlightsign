@@ -8,6 +8,9 @@ CALENDAR_ID = 'sunlightfoundation.com_1a1234567890@resource.calendar.google.com'
 # Your timezone, as readable by pytz (http://pytz.sourceforge.net/)
 TIMEZONE = 'US/Eastern'
 
+# how many days into the future the app should look for upcoming meetings
+MAX_DAYS_FORWARD = 7
+
 try:
 	from local_settings import * 
 except Exception, e:

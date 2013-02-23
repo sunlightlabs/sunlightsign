@@ -48,7 +48,7 @@ def get_service_credentials():
 
 def get_events(start=None, end=None):
 	start = start is not None and start or datetime.datetime.now(tz=pytz.timezone(TIMEZONE))
-	end = end is not None and end or start + datetime.timedelta(days=7)
+	end = end is not None and end or start + datetime.timedelta(days=MAX_DAYS_FORWARD)
 
 	service = get_service_credentials()
 	events = service.events().list(calendarId=CALENDAR_ID, singleEvents=True, timeMin=start.isoformat(), timeMax=end.isoformat()).execute()

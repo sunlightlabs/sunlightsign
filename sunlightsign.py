@@ -43,15 +43,9 @@ class SunlightSign():
 
         # open USB connection to sign
         self.sign = alphasign.USB(alphasign.devices.USB_BETABRITE_PRISM)
-        try:
-            self.sign.connect()
-        except ValueError, e:
-            sys.stderr.write("Error accessing sign. Are you sure it's connected?\n")            
-            raise e
-
-
+        self.sign.connect()
         self.sign.clear_memory()       
-        # self.sign.beep()
+        self.sign.beep()
 
         # set up content and its container
         content = alphasign.String(size=30, label="A")
@@ -235,9 +229,9 @@ if __name__ == '__main__':
         log_target_name = len(sys.argv)>2 and sys.argv[2] or None
         if log_target_name is not None:
             log_target = open(log_target_name,'a')
-        else:
+        elif '--debug' in sys.argv:
             log_target = sys.stdout
-            
+
         s = SunlightSign(log_target=log_target, debug=('--debug' in sys.argv))
         s.setup()
         s.run()

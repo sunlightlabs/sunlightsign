@@ -127,6 +127,9 @@ class SunlightSign():
                     if val>0:
                         result.append("%d%s" % (val, label))
 
+                if len(result)==0:
+                    result.append('0m')
+
                 if d.seconds>3600:
                     color = alphasign.colors.GREEN
                 elif d.seconds>1200:

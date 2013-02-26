@@ -12,7 +12,8 @@ log_target = None
 class SunlightSign():
 
     UPDATE_INTERVAL = 60 # in seconds
-    SUNLIGHT_ORANGE = alphasign.colors.rgb('E4701E')
+    # SUNLIGHT_ORANGE = alphasign.colors.rgb('E4701E')
+    SUNLIGHT_ORANGE = alphasign.colors.ORANGE
 
     def __init__(self, log_target=sys.stdout, debug=False):
 

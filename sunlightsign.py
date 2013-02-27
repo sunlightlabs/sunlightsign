@@ -12,8 +12,9 @@ log_target = None
 class SunlightSign():
 
     UPDATE_INTERVAL = 60 # in seconds
-    # SUNLIGHT_ORANGE = alphasign.colors.rgb('E4701E')
-    SUNLIGHT_ORANGE = alphasign.colors.ORANGE
+    SUNLIGHT_ORANGE = alphasign.colors.rgb('E4701E')
+    #SUNLIGHT_ORANGE = alphasign.colors.ORANGE
+    MAX_MESSAGE_LENGTH = 126 # this seems to be a betabrite limitation
 
     def __init__(self, log_target=sys.stdout, debug=False):
 
@@ -49,7 +50,7 @@ class SunlightSign():
         self.sign.beep()
 
         # set up content and its container
-        content = alphasign.String(size=30, label="A")
+        content = alphasign.String(size=255, label="A")
         content.data = "Welcome to the %sSunlight Foundation" % self.SUNLIGHT_ORANGE
         container = alphasign.Text(("%s%s" % (alphasign.charsets.SEVEN_HIGH_STD, content.call())), label="1", mode=alphasign.modes.ROTATE)
 
@@ -152,8 +153,8 @@ class SunlightSign():
             self.log("Setting sign message to '%s'" % t)
 
             # create logical objects to work with
-            content = alphasign.String(size=25, label="A")
-            content.data = t
+            content = alphasign.String(size=min(len(t), self.MAX_MESSAGE_LENGTH), label="A")
+            content.data = t[:self.MAX_MESSAGE_LENGTH]
         
             # display the object
             if not self.debug:

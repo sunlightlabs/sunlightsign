@@ -82,7 +82,7 @@ class SunlightSign():
         
     def _make_event_display_string(self, event):
         (summary, start, end) = event
-        return "%s / %d:%02d-%d:%02d" % (summary, start.hour % 12, start.minute, end.hour % 12, end.minute)
+        return "%s / %d:%02d-%d:%02d" % (summary, (start.hour % 12)!=0 and (start.hour % 12) or start.hour, start.minute, (end.hour % 12)!=0 and (end.hour % 12) or end.hour, end.minute)
 
     def _process_gcal_events(self, events):
         processed_events = []

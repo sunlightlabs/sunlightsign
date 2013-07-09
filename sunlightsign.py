@@ -5,7 +5,7 @@ import pytz
 import alphasign
 from settings import *
 
-PID_FILE = 'sunlightsign.pid'
+PID_FILE = '/var/run/sunlightsign.pid'
 s = None # placeholder variable for sign        
 log_target = None
 
@@ -222,7 +222,7 @@ if __name__ == '__main__':
 
     if pid:
         f = open(PID_FILE,'w')
-        f.write(str(pid))
+        f.write(str(pid) + "\n")
         f.close()
 
     else:        

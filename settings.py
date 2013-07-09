@@ -1,6 +1,6 @@
 # create & download this file from https://code.google.com/apis/console/
-SECRETS_FILE = 'client_secrets.json' 
-OAUTH_TOKEN_FILE = 'calendar.dat'
+SECRETS_FILE = '/home/pi/Devel/sunlightsign/client_secrets.json' 
+OAUTH_TOKEN_FILE = '/home/pi/Devel/sunlightsign/calendar.dat'
 
 # this string will look somewhat like the value to the left, and can be found in the 
 # 'Calendar Address' section of 'Calendar Settings' in Google Calendar
